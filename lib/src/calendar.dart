@@ -559,7 +559,7 @@ class _TableCalendarState extends State<TableCalendar>
                                 ? 'Semana'
                                 : widget.calendarController.calendarFormat ==
                                         CalendarFormat.month
-                                    ? 'Mes'
+                                    ? 'Mês'
                                     : "",
                         style: TextStyle()
                             .copyWith(color: Colors.white, fontSize: 13.0),
