@@ -10,7 +10,7 @@ typedef FullBuilder = Widget Function(BuildContext context, DateTime date, List 
 
 /// Builder signature for a list of event markers. Contains `date` and list of all `events` associated with that `date`.
 /// Both `events` and `holidays` params can be null.
-typedef FullListBuilder = List<Widget> Function(BuildContext context, DateTime date, List events, List holidays);
+typedef FullListBuilder = List<Widget> Function(BuildContext context, DateTime date, List events,List visits, List calls, List holidays);
 
 /// Builder signature for weekday names row. Contains `weekday` string, which is formatted by `dowTextBuilder`
 /// or by default function (DateFormat.E(widget.locale).format(date)), if `dowTextBuilder` is null.

@@ -58,6 +58,44 @@ class CalendarController {
     );
   }
 
+  /// `Map` of currently visible visits.
+  Map<DateTime, List> get visibleVisits {
+    if (_visits == null) {
+      return {};
+    }
+
+    return Map.fromEntries(
+      _visits.entries.where((entry) {
+        for (final day in visibleDays) {
+          if (_isSameDay(day, entry.key)) {
+            return true;
+          }
+        }
+
+        return false;
+      }),
+    );
+  }
+
+  /// `Map` of currently visible calls.
+  Map<DateTime, List> get visibleCalls {
+    if (_calls == null) {
+      return {};
+    }
+
+    return Map.fromEntries(
+      _calls.entries.where((entry) {
+        for (final day in visibleDays) {
+          if (_isSameDay(day, entry.key)) {
+            return true;
+          }
+        }
+
+        return false;
+      }),
+    );
+  }
+
   /// `Map` of currently visible holidays.
   Map<DateTime, List> get visibleHolidays {
     if (_holidays == null) {
@@ -78,6 +116,8 @@ class CalendarController {
   }
 
   Map<DateTime, List> _events;
+  Map<DateTime, List> _calls;
+  Map<DateTime, List> _visits;
   Map<DateTime, List> _holidays;
   DateTime _focusedDay;
   DateTime _selectedDay;
@@ -95,6 +135,8 @@ class CalendarController {
 
   void _init({
     @required Map<DateTime, List> events,
+    @required Map<DateTime, List> calls,
+    @required Map<DateTime, List> visits,
     @required Map<DateTime, List> holidays,
     @required DateTime initialDay,
     @required CalendarFormat initialFormat,
@@ -105,8 +147,12 @@ class CalendarController {
     @required OnVisibleDaysChanged onVisibleDaysChanged,
     @required OnCalendarCreated onCalendarCreated,
     @required bool includeInvisibleDays,
+    @required bool showThermometer,
+    @required Map<DateTime,List<int>> valuesThermometer,
   }) {
     _events = events;
+    _calls = calls;
+    _visits = visits;
     _holidays = holidays;
     _availableCalendarFormats = availableCalendarFormats;
     _startingDayOfWeek = startingDayOfWeek;
@@ -271,10 +317,12 @@ class CalendarController {
 
   void _selectPreviousMonth() {
     _focusedDay = _previousMonth(_focusedDay);
+//    _selectedDay = _focusedDay;
   }
 
   void _selectNextMonth() {
     _focusedDay = _nextMonth(_focusedDay);
+//    _selectedDay = _focusedDay;
   }
 
   void _selectPreviousTwoWeeks() {
@@ -437,6 +485,14 @@ class CalendarController {
 
   DateTime _getEventKey(DateTime day) {
     return visibleEvents.keys.firstWhere((it) => _isSameDay(it, day), orElse: () => null);
+  }
+
+  DateTime _getCallKey(DateTime day) {
+    return visibleCalls.keys.firstWhere((it) => _isSameDay(it, day), orElse: () => null);
+  }
+
+  DateTime _getVisitKey(DateTime day) {
+    return visibleVisits.keys.firstWhere((it) => _isSameDay(it, day), orElse: () => null);
   }
 
   DateTime _getHolidayKey(DateTime day) {

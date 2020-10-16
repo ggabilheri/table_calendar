@@ -45,7 +45,22 @@ class CalendarStyle {
   final Color todayColor;
 
   /// Color of event markers placed on the bottom of every day containing events.
-  final Color markersColor;
+  final Color markersEventColor;
+
+  /// Color of call markers placed on the bottom of call day containing calls.
+  final Color markersCallColor;
+
+  /// Color of visit markers placed on the bottom of visit day containing visits.
+  final Color markersVisitColor;
+
+  /// Shape of event markers placed on the bottom of every day containing events.
+  final BoxShape markersEventShape;
+
+  /// Shape of call markers placed on the bottom of call day containing calls.
+  final BoxShape markersCallShape;
+
+  /// Shape of visit markers placed on the bottom of visit day containing visits.
+  final BoxShape markersVisitShape;
 
   /// General `Alignment` for event markers.
   /// NOTE: `markersPositionBottom` defaults to `5.0`, so you might want to set it to `null` when using `markersAlignment`.
@@ -112,7 +127,15 @@ class CalendarStyle {
     this.eventDayStyle = const TextStyle(),
     this.selectedColor = const Color(0xFF5C6BC0), // Material indigo[400]
     this.todayColor = const Color(0xFF9FA8DA), // Material indigo[200]
-    this.markersColor = const Color(0xFF263238), // Material blueGrey[900]
+
+    this.markersEventColor = const Color(0xFF263238), // Material blueGrey[900]
+    this.markersCallColor = const Color(0xFF263238), // Material blueGrey[900]
+    this.markersVisitColor = const Color(0xFF263238), // Material blueGrey[900]
+
+    this.markersEventShape =  BoxShape.circle,
+    this.markersCallShape =  BoxShape.circle, // Material blueGrey[900]
+    this.markersVisitShape =  BoxShape.circle, // Material blueGrey[900]
+
     this.markersAlignment = Alignment.bottomCenter,
     this.markersPositionTop,
     this.markersPositionBottom = 5.0,
