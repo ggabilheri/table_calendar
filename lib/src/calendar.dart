@@ -866,10 +866,10 @@ class _TableCalendarState extends State<TableCalendar>
         } else {
           children.add(
             Positioned(
-//              top: widget.calendarStyle.markersPositionTop,
-              left: widget.calendarStyle.markersPositionLeft + 9,
+              top: widget.calendarStyle.markersPositionTop,
+              left: (widget.calendarStyle.markersPositionLeft ?? 0) + 9,
               right: widget.calendarStyle.markersPositionRight,
-              // bottom: widget.calendarStyle.markersPositionBottom,
+              bottom: widget.calendarStyle.markersPositionBottom,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: visits
@@ -881,10 +881,10 @@ class _TableCalendarState extends State<TableCalendar>
           );
           children.add(
             Positioned(
-//              top: widget.calendarStyle.markersPositionTop,
-              // bottom: widget.calendarStyle.markersPositionBottom,
+              top: widget.calendarStyle.markersPositionTop,
+              bottom: widget.calendarStyle.markersPositionBottom,
               left: widget.calendarStyle.markersPositionLeft,
-              right: widget.calendarStyle.markersPositionRight + 9,
+              right: (widget.calendarStyle.markersPositionRight ?? 0) + 9,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: events
@@ -896,10 +896,10 @@ class _TableCalendarState extends State<TableCalendar>
           );
           children.add(
             Positioned(
-              // bottom: widget.calendarStyle.markersPositionBottom,
-              // left: widget.calendarStyle.markersPositionLeft,
-              right: widget.calendarStyle.markersPositionRight + 11,
-//              top: widget.calendarStyle.markersPositionTop,
+              bottom: widget.calendarStyle.markersPositionBottom,
+              left: widget.calendarStyle.markersPositionLeft,
+              right: (widget.calendarStyle.markersPositionRight ?? 0) + 11,
+              top: widget.calendarStyle.markersPositionTop,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: calls
